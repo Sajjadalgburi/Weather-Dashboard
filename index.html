@@ -16,6 +16,27 @@
   <body>
     <header class="header">Weather Dashboard</header>
 
+    <main id="content" class="content">
+      <div id="search-engine" class="search-engine">
+        <h2 class="search-header">Search For A City</h2>
+        <input
+          id="search-input"
+          class="search-input"
+          type="text"
+          maxlength="28"
+        />
+        <br />
+
+        <button id="serachBtn" class="serachBtn">Search</button>
+      </div>
+
+      <div id="forecast" class="forecast">
+        <div id="current-forecast" class="current-forecast"></div>
+        <!--  -->
+        <div id="future-forecast" class="future-forecast"></div>
+      </div>
+    </main>
+
     <script
       src="https://code.jquery.com/jquery-3.7.1.min.js"
       integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
