@@ -27,24 +27,26 @@
     <main id="content" class="">
       <div class="row">
         <div id="search-engine" class="col-12 col-md-2 mx-4">
-          <h2 class="search-header">Search For A City</h2>
-          <input
-            id="search-input"
-            class="search-input"
-            type="text"
-            placeholder="Type a city..."
-            maxlength="28"
-          />
+          <h2 class="search-header">Search For A City:</h2>
+
+          <div class="input-group">
+            <input
+              id="search-input"
+              class="search-input form-control"
+              type="text"
+              placeholder="Type a city..."
+              maxlength="28"
+            />
+          </div>
           <br />
 
-          <div class="d-grid gap-2 col-6">
-            <button id="serachBtn" class="serachBtn mt-3 mb-1">Search</button>
+          <div class="d-grid gap-2 col-6 mx-auto">
+            <button id="serachBtn" class="btn btn-outline-primary">
+              Search
+            </button>
           </div>
 
           <hr />
-
-          <!-- 
-          <button id="serachBtn" class="serachBtn my-3">Search</button> -->
         </div>
 
         <div id="forecast" class="col-12 col-md-9">
