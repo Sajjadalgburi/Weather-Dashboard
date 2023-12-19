@@ -24,24 +24,48 @@
       Weather Dashboard
     </header>
 
-    <main id="content" class="content">
-      <div id="search-engine" class="search-engine">
-        <h2 class="search-header">Search For A City</h2>
-        <input
-          id="search-input"
-          class="search-input"
-          type="text"
-          maxlength="28"
-        />
-        <br />
+    <main id="content" class="">
+      <div class="row">
+        <div id="search-engine" class="col-12 col-md-2 mx-4">
+          <h2 class="search-header">Search For A City</h2>
+          <input
+            id="search-input"
+            class="search-input"
+            type="text"
+            placeholder="Type a city..."
+            maxlength="28"
+          />
+          <br />
 
-        <button id="serachBtn" class="serachBtn">Search</button>
-      </div>
+          <div class="d-grid gap-2 col-6">
+            <button id="serachBtn" class="serachBtn mt-3 mb-1">Search</button>
+          </div>
 
-      <div id="forecast" class="forecast">
-        <div id="current-forecast" class="current-forecast"></div>
-        <!--  -->
-        <div id="future-forecast" class="future-forecast"></div>
+          <hr />
+
+          <!-- 
+          <button id="serachBtn" class="serachBtn my-3">Search</button> -->
+        </div>
+
+        <div id="forecast" class="col-12 col-md-9">
+          <div id="current-forecast" class="current-forecast">
+            <p>
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Modi id,
+              alias ipsum in molestiae quasi eaque neque amet accusantium quis
+              iure sapiente eius quia illum sit consequuntur explicabo nisi
+              necessitatibus.
+            </p>
+          </div>
+          <!--  -->
+          <div id="future-forecast" class="future-forecast">
+            <p>
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+              Voluptates natus fugiat perspiciatis qui similique eligendi
+              officiis magnam, animi officia obcaecati, sit quo, ratione odio
+              possimus reiciendis. Consectetur eveniet non quam.
+            </p>
+          </div>
+        </div>
       </div>
     </main>
 
