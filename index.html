@@ -24,58 +24,44 @@
       Weather Dashboard
     </header>
 
-    <main id="content" class="">
+    <main class="content container-fluid">
       <div class="row">
-        <div id="search-engine" class="col-12 col-md-2 mx-4">
+        <div
+          class="search-engine text-center col-12 col-md-2 mx-4 d-flex flex-column align-items-center"
+        >
           <h2 class="search-header">Search For A City:</h2>
 
-          <div class="input-group">
+          <div class="input-group" style="max-width: 300px">
             <input
-              id="search-input"
               class="search-input form-control"
               type="text"
               placeholder="Type a city..."
               maxlength="28"
             />
           </div>
+
           <br />
 
-          <div class="d-grid gap-2 col-6 mx-auto">
-            <button id="serachBtn" class="btn btn-outline-primary">
-              Search
-            </button>
+          <div class="d-grid gap-2 col-6 mx-auto w-75">
+            <button class="searchBtn btn btn-outline-primary">Search</button>
           </div>
 
           <hr />
         </div>
 
-        <div id="forecast" class="col-12 col-md-9">
-          <div id="current-forecast" class="current-forecast">
-            <p>
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Modi id,
-              alias ipsum in molestiae quasi eaque neque amet accusantium quis
-              iure sapiente eius quia illum sit consequuntur explicabo nisi
-              necessitatibus.
-            </p>
-          </div>
+        <div class="forecast col-12 col-md-9">
+          <div class="current-forecast"></div>
           <!--  -->
-          <div id="future-forecast" class="future-forecast">
-            <p>
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-              Voluptates natus fugiat perspiciatis qui similique eligendi
-              officiis magnam, animi officia obcaecati, sit quo, ratione odio
-              possimus reiciendis. Consectetur eveniet non quam.
-            </p>
-          </div>
+          <div class="future-forecast"></div>
         </div>
       </div>
     </main>
-
+    <!-- 
     <script
       src="https://code.jquery.com/jquery-3.7.1.min.js"
       integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
       crossorigin="anonymous"
-    ></script>
+    ></script> -->
 
     <script src="assets/js/script.js"></script>
   </body>
