@@ -30,3 +30,13 @@ body {
 .future-forecast {
   margin-top: 4rem;
 }
+
+.future-forecast h4 {
+  font-size: 2em;
+  font-weight: bold;
+}
+
+.card {
+  background-color: #465058;
+  color: #fff;
+}
