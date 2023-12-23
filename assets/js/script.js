@@ -21,18 +21,38 @@ document.addEventListener("DOMContentLoaded", () => {
       })
       .then(function (data) {
         console.log(data);
-        console.log(data.weather);
-
-        const h3El = document.createElement("h3");
-        h3El.innerHTML = "Date for weather";
-
-        console.log(h3El);
-
-        var unixTimeStamp = data.dt;
-        console.log(unixTimeStamp);
-
-        currentForecast.appendChild(h3El);
+        displayWeather(data);
       });
+  };
+
+  const displayWeather = (data) => {
+    currentForecast.innerHTML = "";
+    var h3El = document.createElement("h3");
+    h3El.innerHTML = "Date for weather";
+
+    var spaceEl = document.createElement("br");
+
+    var tempEl = document.createElement("p");
+    tempEl.innerHTML = "Temp: " + Math.random(data.main.temp) + " °C";
+
+    var feelsLikeEl = document.createElement("p");
+    feelsLikeEl.innerHTML = "Feels Like: " + data.main.feels_like + " °C";
+
+    var windEl = document.createElement("p");
+    windEl.innerHTML = "Wind: " + data.wind.speed * 3.6 + " km/h";
+
+    var humidityEl = document.createElement("p");
+    humidityEl.innerHTML = "Humidity: " + data.main.humidity + " %";
+
+    var unixTimeStamp = data.dt;
+    console.log(unixTimeStamp);
+
+    currentForecast.appendChild(h3El);
+    currentForecast.appendChild(spaceEl);
+    currentForecast.appendChild(tempEl);
+    currentForecast.appendChild(feelsLikeEl);
+    currentForecast.appendChild(windEl);
+    currentForecast.appendChild(humidityEl);
   };
 
   // I can use https://openweathermap.org/api/geocoding-api in order to grab current weather api
