@@ -21,17 +21,16 @@ document.addEventListener("DOMContentLoaded", () => {
       })
       .then(function (data) {
         console.log(data);
+        console.log(data.weather);
 
         const h3El = document.createElement("h3");
+        h3El.innerHTML = "Date for weather";
 
-        var currentDate = dayjs().format("YYYY-MM-DD HH:mm:ss");
-        console.log("Current date:", currentDate);
+        console.log(h3El);
 
-        const unixTimeStamp = data.dt;
+        var unixTimeStamp = data.dt;
         console.log(unixTimeStamp);
 
-        h3El.innerHTML = data.dt;
-        console.log(currentForecast);
         currentForecast.appendChild(h3El);
       });
   };
