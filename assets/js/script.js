@@ -25,6 +25,28 @@ document.addEventListener("DOMContentLoaded", () => {
       });
   };
 
+  const futureWeather = function (cityNameValue) {
+    const apiKey = "2f2d6a3fd4509d18a14337b7899f0483";
+    const futureWeatherApi =
+      "https://api.openweathermap.org/data/2.5/forecast?q=" +
+      cityNameValue +
+      "&appid=" +
+      apiKey +
+      "&units=metric";
+
+    fetch(futureWeatherApi)
+      .then(function (response) {
+        if (response.status === 404) {
+          alert("Weather fetch error");
+        }
+        return response.json();
+      })
+      .then(function (data) {
+        console.log(data.list[0]);
+        // displayWeather(data);
+      });
+  };
+
   const displayWeather = (data) => {
     // Check if data is not null or undefined
 
@@ -84,11 +106,6 @@ document.addEventListener("DOMContentLoaded", () => {
     currentForecast.appendChild(humidityEl);
   };
 
-  // const changeWeatherImgs = (weatherImg) => {
-  //   if (data.weather[0].main == "Clouds") {
-  //   }
-  // };
-
   // I can use https://openweathermap.org/api/geocoding-api in order to grab current weather api
   // after grabbing the current forecast, I need to grab the weather data then display/ append into the div (find in html)
   // after displaying the current wather api, -> display the upcoming 5 days through https://openweathermap.org/forecast5#builtin
@@ -105,6 +122,7 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
     currentWeather(cityNameValue);
+    futureWeather(cityNameValue);
   };
 
   searchBtn.addEventListener("click", getCityName); // on click display the getCityName function
