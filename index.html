@@ -37,6 +37,7 @@
 
           <div class="input-group align-self-center" style="max-width: 300px">
             <input
+              id="type"
               class="search-input form-control"
               type="text"
               placeholder="Type a city..."
@@ -55,7 +56,11 @@
         </div>
 
         <div class="forecast col-12 col-md-10">
-          <div class="current-forecast mx-2"></div>
+          <div class="current-forecast mx-2">
+            <a href="#type">
+              <h2 id="no-Data">Please type a city...</h2>
+            </a>
+          </div>
           <!--  -->
           <div class="future-forecast">
             <h4>5-Day forecast:</h4>
