@@ -54,6 +54,7 @@ body {
   color: #fff;
   box-shadow: 6px 5px #9caea9;
   background-color: #465058;
+  transform: translate(-1px, -1px);
 }
 
 .after-Search:hover,
@@ -62,7 +63,7 @@ body {
   color: #38302e;
   background-color: #9caea9;
   box-shadow: 9px 8px #465058;
-  transform: translate(10, 1);
+  transform: translate(0, 0);
 }
 
 h3 {
@@ -84,6 +85,7 @@ h3 {
 }
 
 .card {
+  transform: translate(-1px, -1px);
   background-color: #465058;
   color: #fff;
   border-radius: 0.3rem;

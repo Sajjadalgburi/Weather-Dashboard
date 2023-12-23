@@ -62,7 +62,7 @@ document.addEventListener("DOMContentLoaded", () => {
       "Feels Like: " + Math.round(data.main.feels_like) + " °C";
 
     var windEl = document.createElement("p");
-    windEl.innerHTML = "Wind: " + Math.round(data.wind.speed) + " m/s";
+    windEl.innerHTML = "Wind: " + data.wind.speed.toFixed(1) + " m/s";
 
     var humidityEl = document.createElement("p");
     humidityEl.innerHTML = "Humidity: " + data.main.humidity + " %";
