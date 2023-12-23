@@ -5,9 +5,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const cityName = document.querySelector(".search-input");
   const currentForecast = document.querySelector(".current-forecast");
 
-  const apiKey = "2f2d6a3fd4509d18a14337b7899f0483"; // Api Key
-
   const currentWeather = function (cityNameValue) {
+    const apiKey = "2f2d6a3fd4509d18a14337b7899f0483"; // Api Key
     const currentWeatherApi =
       "https://api.openweathermap.org/data/2.5/weather?q=" +
       cityNameValue +
@@ -26,32 +25,35 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   const futureWeather = function (cityNameValue) {
-    const apiKey = "2f2d6a3fd4509d18a14337b7899f0483";
+    const apiKey = "2f2d6a3fd4509d18a14337b7899f0483"; // Api Key
+
     const futureWeatherApi =
-      "https://api.openweathermap.org/data/2.5/forecast?q=" +
+      "https://api.openweathermap.org/data/2.5/forecast/daily?q=" +
       cityNameValue +
       "&appid=" +
       apiKey +
-      "&units=metric";
+      "&units=metric&cnt=5";
 
     fetch(futureWeatherApi)
       .then(function (response) {
         if (response.status === 404) {
-          alert("Weather fetch error");
+          alert("Weather fetch error: " + response.status);
         }
         return response.json();
       })
       .then(function (data) {
-        console.log(data.list[0]);
+        console.log(data);
         // displayWeather(data);
+      })
+      .catch(function (error) {
+        console.error(error);
       });
   };
 
   const displayWeather = (data) => {
-    // Check if data is not null or undefined
-
-    if (!data) {
-      alert("Weather data is undefined or null");
+    // Check if data.name is not null or undefined
+    if (data.name == null) {
+      alert(data.message);
       return;
     }
 
@@ -118,6 +120,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!cityNameValue) {
       return; // check if there is nothing, else return
     } else if (!isNaN(cityNameValue)) {
+      alert("Please enter a city name");
       // check if there is a number, else return
       return;
     }
