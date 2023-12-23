@@ -21,7 +21,18 @@ document.addEventListener("DOMContentLoaded", () => {
       })
       .then(function (data) {
         console.log(data);
-        console.log(data.wind.speed);
+
+        const h3El = document.createElement("h3");
+
+        var currentDate = dayjs().format("YYYY-MM-DD HH:mm:ss");
+        console.log("Current date:", currentDate);
+
+        const unixTimeStamp = data.dt;
+        console.log(unixTimeStamp);
+
+        h3El.innerHTML = data.dt;
+        console.log(currentForecast);
+        currentForecast.appendChild(h3El);
       });
   };
 
