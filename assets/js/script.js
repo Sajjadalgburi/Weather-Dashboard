@@ -33,6 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
+    currentForecast.setAttribute("class", "after-Search");
     currentForecast.innerHTML = "";
     var h3El = document.createElement("h3");
     h3El.innerHTML = "Date for weather";
