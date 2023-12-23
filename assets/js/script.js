@@ -36,7 +36,16 @@ document.addEventListener("DOMContentLoaded", () => {
     currentForecast.setAttribute("class", "after-Search");
     currentForecast.innerHTML = "";
     var h3El = document.createElement("h3");
-    h3El.innerHTML = "Date for weather";
+    // h3El.innerHTML = "Date for weather";
+
+    const cityName = data.name;
+    var unixTimeStamp = data.dt;
+    var convertedTime = dayjs.unix(unixTimeStamp).format("MM/DD/YYYY");
+
+    console.log(convertedTime);
+    console.log(unixTimeStamp);
+
+    h3El.innerHTML = cityName + " " + "(" + convertedTime + ")";
 
     var weatherImg = document.createElement("img");
     weatherImg.setAttribute("class", "weather-icon");
@@ -66,9 +75,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     var humidityEl = document.createElement("p");
     humidityEl.innerHTML = "Humidity: " + data.main.humidity + " %";
-
-    var unixTimeStamp = data.dt;
-    console.log(unixTimeStamp);
 
     currentForecast.appendChild(h3El);
     currentForecast.appendChild(weatherImg);
