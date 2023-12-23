@@ -26,20 +26,42 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   const displayWeather = (data) => {
+    // Check if data is not null or undefined
+
+    if (!data) {
+      alert("Weather data is undefined or null");
+      return;
+    }
+
     currentForecast.innerHTML = "";
     var h3El = document.createElement("h3");
     h3El.innerHTML = "Date for weather";
 
-    var spaceEl = document.createElement("br");
+    var weatherImg = document.createElement("img");
+    weatherImg.setAttribute("class", "weather-icon");
+    // weatherImg.src = "assets/Weather-Imgs/clear.png";
+
+    if (data.weather[0].main == "Clouds") {
+      weatherImg.src = "assets/Weather-Imgs/clouds.png";
+    } else if (data.weather[0].main == "Clear") {
+      weatherImg.src = "assets/Weather-Imgs/clear.png";
+    } else if (data.weather[0].main == "Rain") {
+      weatherImg.src = "assets/Weather-Imgs/rain.png";
+    } else if (data.weather[0].main == "Drizzle") {
+      weatherImg.src = "assets/Weather-Imgs/drizzle.png";
+    } else if (data.weather[0].main == "Mist") {
+      weatherImg.src = "assets/Weather-Imgs/mist.png";
+    }
 
     var tempEl = document.createElement("p");
-    tempEl.innerHTML = "Temp: " + Math.random(data.main.temp) + " °C";
+    tempEl.innerHTML = "Temp: " + Math.round(data.main.temp) + " °C";
 
     var feelsLikeEl = document.createElement("p");
-    feelsLikeEl.innerHTML = "Feels Like: " + data.main.feels_like + " °C";
+    feelsLikeEl.innerHTML =
+      "Feels Like: " + Math.round(data.main.feels_like) + " °C";
 
     var windEl = document.createElement("p");
-    windEl.innerHTML = "Wind: " + data.wind.speed * 3.6 + " km/h";
+    windEl.innerHTML = "Wind: " + Math.round(data.wind.speed) + " m/s";
 
     var humidityEl = document.createElement("p");
     humidityEl.innerHTML = "Humidity: " + data.main.humidity + " %";
@@ -48,12 +70,17 @@ document.addEventListener("DOMContentLoaded", () => {
     console.log(unixTimeStamp);
 
     currentForecast.appendChild(h3El);
-    currentForecast.appendChild(spaceEl);
+    currentForecast.appendChild(weatherImg);
     currentForecast.appendChild(tempEl);
     currentForecast.appendChild(feelsLikeEl);
     currentForecast.appendChild(windEl);
     currentForecast.appendChild(humidityEl);
   };
+
+  // const changeWeatherImgs = (weatherImg) => {
+  //   if (data.weather[0].main == "Clouds") {
+  //   }
+  // };
 
   // I can use https://openweathermap.org/api/geocoding-api in order to grab current weather api
   // after grabbing the current forecast, I need to grab the weather data then display/ append into the div (find in html)
