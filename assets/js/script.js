@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const searchBtn = document.querySelector(".searchBtn");
   const cityName = document.querySelector(".search-input");
   const currentForecast = document.querySelector(".current-forecast");
+  const divRow = document.getElementById("row");
 
   const apiKey = "7d625d8ae80758ec40d01750c5681218"; // Api Key
 
@@ -42,6 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
       })
       .then(function (data) {
         // Check if the 'list' property exists in the data
+        divRow.innerHTML = " ";
         displayFutureWeather(data);
       })
       .catch(function (error) {
@@ -53,11 +55,6 @@ document.addEventListener("DOMContentLoaded", () => {
     if (data.list) {
       for (let i = 1; i < data.list.length; i += 8) {
         console.log(data.list[i]);
-
-        const futureWeather = document.querySelector(".future-forecast");
-
-        const div1 = document.createElement("div");
-        // div1.setAttribute("class", "row");
 
         const div2 = document.createElement("div");
         div2.setAttribute("class", "col-12 col-sm-6 col-md-2");
@@ -89,8 +86,7 @@ document.addEventListener("DOMContentLoaded", () => {
         humidityEl.innerHTML = "Humidity: <span></span>"; // Use data.list[i].main.humidity for humidity
 
         // Append elements in the correct order
-        futureWeather.appendChild(div1);
-        div1.appendChild(div2);
+        divRow.appendChild(div2);
         div2.appendChild(div3);
         div3.appendChild(titleEl);
         div3.appendChild(imgEl);
