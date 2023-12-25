@@ -91,3 +91,39 @@ h3 {
   border-radius: 0.3rem;
   box-shadow: 6px 5px #9caea9;
 }
+
+#row {
+  /* flex-wrap: wrap; */
+  margin-top: 25px;
+}
+#no-Data-Found {
+  font-size: 40px;
+  max-width: 50%;
+  height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: #ccdad1;
+  color: #38302e;
+  padding: 0 10px;
+  border-radius: 0.3rem;
+  box-shadow: -6px 5px #373c42;
+}
+
+#no-Data-Found h3 {
+  font-size: 1.6rem;
+  margin: 0; /* Remove default margin */
+}
+
+/* 
+.no-Data {
+  font-size: 2rem;
+  background-color: #ccdad1;
+  color: #38302e;
+  padding: 0 10px;
+  display: inline-block;
+  border-radius: 0.3rem;
+  transform: translate(-1px, -1px);
+} */
