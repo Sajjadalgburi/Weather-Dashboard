@@ -5,8 +5,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const cityName = document.querySelector(".search-input");
   const currentForecast = document.querySelector(".current-forecast");
 
+  const apiKey = "7d625d8ae80758ec40d01750c5681218"; // Api Key
+
   const currentWeather = function (cityNameValue) {
-    const apiKey = "2f2d6a3fd4509d18a14337b7899f0483"; // Api Key
     const currentWeatherApi =
       "https://api.openweathermap.org/data/2.5/weather?q=" +
       cityNameValue +
@@ -20,19 +21,17 @@ document.addEventListener("DOMContentLoaded", () => {
       })
       .then(function (data) {
         console.log(data);
-        displayWeather(data);
+        displayCurrentWeather(data);
       });
   };
 
   const futureWeather = function (cityNameValue) {
-    const apiKey = "2f2d6a3fd4509d18a14337b7899f0483"; // Api Key
-
     const futureWeatherApi =
-      "https://api.openweathermap.org/data/2.5/forecast/daily?q=" +
+      "https://api.openweathermap.org/data/2.5/forecast?q=" +
       cityNameValue +
       "&appid=" +
       apiKey +
-      "&units=metric&cnt=5";
+      "&units=metric";
 
     fetch(futureWeatherApi)
       .then(function (response) {
@@ -42,15 +41,70 @@ document.addEventListener("DOMContentLoaded", () => {
         return response.json();
       })
       .then(function (data) {
-        console.log(data);
-        // displayWeather(data);
+        // Check if the 'list' property exists in the data
+        displayFutureWeather(data);
       })
       .catch(function (error) {
         console.error(error);
       });
   };
 
-  const displayWeather = (data) => {
+  const displayFutureWeather = (data) => {
+    if (data.list) {
+      for (let i = 1; i < data.list.length; i += 8) {
+        console.log(data.list[i]);
+
+        const futureWeather = document.querySelector(".future-forecast");
+
+        const div1 = document.createElement("div");
+        // div1.setAttribute("class", "row");
+
+        const div2 = document.createElement("div");
+        div2.setAttribute("class", "col-12 col-sm-6 col-md-2");
+
+        const div3 = document.createElement("div");
+        div3.setAttribute("class", "card mb-3");
+
+        const titleEl = document.createElement("h3");
+        titleEl.setAttribute("class", "card-header");
+        titleEl.textContent = "LOL"; // Set the title text content
+
+        const imgEl = document.createElement("img");
+        imgEl.setAttribute("class", "weather-icon");
+        // Set the src attribute for the image - you might need to get the actual icon URL from your data
+
+        const div4 = document.createElement("div");
+        div4.setAttribute("class", "card-body p-4");
+
+        const tempEl = document.createElement("p");
+        tempEl.setAttribute("class", "card-text");
+        tempEl.innerHTML = "Temp: <span></span>"; // Use data.list[i].main.temp for temperature
+
+        const windEl = document.createElement("p");
+        windEl.setAttribute("class", "card-text");
+        windEl.innerHTML = "Wind: <span></span>"; // Use data.list[i].wind.speed for wind
+
+        const humidityEl = document.createElement("p");
+        humidityEl.setAttribute("class", "card-text");
+        humidityEl.innerHTML = "Humidity: <span></span>"; // Use data.list[i].main.humidity for humidity
+
+        // Append elements in the correct order
+        futureWeather.appendChild(div1);
+        div1.appendChild(div2);
+        div2.appendChild(div3);
+        div3.appendChild(titleEl);
+        div3.appendChild(imgEl);
+        div3.appendChild(div4);
+        div4.appendChild(tempEl);
+        div4.appendChild(windEl);
+        div4.appendChild(humidityEl);
+      }
+    } else {
+      console.error("Invalid data format");
+    }
+  };
+
+  const displayCurrentWeather = (data) => {
     // Check if data.name is not null or undefined
     if (data.name == null) {
       alert(data.message);
@@ -66,8 +120,8 @@ document.addEventListener("DOMContentLoaded", () => {
     var unixTimeStamp = data.dt;
     var convertedTime = dayjs.unix(unixTimeStamp).format("MM/DD/YYYY");
 
-    console.log(convertedTime);
-    console.log(unixTimeStamp);
+    // console.log(convertedTime);
+    // console.log(unixTimeStamp);
 
     h3El.innerHTML = cityName + " " + "(" + convertedTime + ")";
 
@@ -107,12 +161,6 @@ document.addEventListener("DOMContentLoaded", () => {
     currentForecast.appendChild(windEl);
     currentForecast.appendChild(humidityEl);
   };
-
-  // I can use https://openweathermap.org/api/geocoding-api in order to grab current weather api
-  // after grabbing the current forecast, I need to grab the weather data then display/ append into the div (find in html)
-  // after displaying the current wather api, -> display the upcoming 5 days through https://openweathermap.org/forecast5#builtin
-  // the 5 day forecast api can use {cityname} instead of corodinates which makes it easier to search
-  // after grabbing the 5 day forecats, I need to grab the weather data then display/ append into the cards in html
 
   const getCityName = () => {
     const cityNameValue = cityName.value.trim(); // grab and trim the vlaue of the input
