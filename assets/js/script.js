@@ -65,13 +65,31 @@ document.addEventListener("DOMContentLoaded", () => {
         const titleEl = document.createElement("h3");
         titleEl.setAttribute("class", "card-header text-center fs-");
 
-        var unixTimeStamp = data.list[i].dt;
-        var convertedTime = dayjs.unix(unixTimeStamp).format("MM/DD/YYYY");
+        var dt_txt = data.list[i].dt_txt;
+        var DateTextFormated = dt_txt.split(" ")[0]; // Extracting the date part
 
-        titleEl.innerHTML = convertedTime;
+        titleEl.innerHTML = DateTextFormated;
 
         const imgEl = document.createElement("img");
         imgEl.setAttribute("class", "weather-icon");
+
+        if (data.list[i].weather[0].main == "Clouds") {
+          imgEl.src = "assets/Weather-Imgs/clouds.png";
+        } else if (data.list[i].weather[0].main == "Clear") {
+          imgEl.src = "assets/Weather-Imgs/clear.png";
+        } else if (data.list[i].weather[0].main == "Rain") {
+          imgEl.src = "assets/Weather-Imgs/rain.png";
+        } else if (data.list[i].weather[0].main == "Drizzle") {
+          imgEl.src = "assets/Weather-Imgs/drizzle.png";
+        } else if (data.list[i].weather[0].main == "Mist") {
+          imgEl.src = "assets/Weather-Imgs/mist.png";
+        } else if (data.list[i].weather[0].main == "Humidity") {
+          imgEl.src = "assets/Weather-Imgs/humidity.png";
+        } else if (data.list[i].weather[0].main == "Snow") {
+          imgEl.src = "assets/Weather-Imgs/snow.png";
+        } else if (data.list[i].weather[0].main == "Wind") {
+          imgEl.src = "assets/Weather-Imgs/wind.png";
+        }
 
         const div4 = document.createElement("div");
         div4.setAttribute("class", "card-body p-4");
