@@ -77,6 +77,11 @@ document.addEventListener("DOMContentLoaded", () => {
         tempEl.innerHTML =
           "Temp: " + Math.round(data.list[i].main.temp) + " °C";
 
+        const feelsLikeEl = document.createElement("p");
+        feelsLikeEl.setAttribute("class", "card-text");
+        feelsLikeEl.innerHTML =
+          "Feels Like: " + Math.round(data.list[i].main.feels_like) + " °C";
+
         const windEl = document.createElement("p");
         windEl.setAttribute("class", "card-text");
         windEl.innerHTML =
@@ -93,6 +98,7 @@ document.addEventListener("DOMContentLoaded", () => {
         div3.appendChild(imgEl);
         div3.appendChild(div4);
         div4.appendChild(tempEl);
+        div4.appendChild(feelsLikeEl);
         div4.appendChild(windEl);
         div4.appendChild(humidityEl);
       }
