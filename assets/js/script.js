@@ -68,22 +68,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const imgEl = document.createElement("img");
         imgEl.setAttribute("class", "weather-icon");
-        // Set the src attribute for the image - you might need to get the actual icon URL from your data
 
         const div4 = document.createElement("div");
         div4.setAttribute("class", "card-body p-4");
 
         const tempEl = document.createElement("p");
         tempEl.setAttribute("class", "card-text");
-        tempEl.innerHTML = "Temp: <span></span>"; // Use data.list[i].main.temp for temperature
+        tempEl.innerHTML =
+          "Temp: " + Math.round(data.list[i].main.temp) + " °C";
 
         const windEl = document.createElement("p");
         windEl.setAttribute("class", "card-text");
-        windEl.innerHTML = "Wind: <span></span>"; // Use data.list[i].wind.speed for wind
+        windEl.innerHTML =
+          "Wind: " + data.list[i].wind.speed.toFixed(1) + " m/s";
 
         const humidityEl = document.createElement("p");
         humidityEl.setAttribute("class", "card-text");
-        humidityEl.innerHTML = "Humidity: <span></span>"; // Use data.list[i].main.humidity for humidity
+        humidityEl.innerHTML = "Humidity: " + data.list[i].main.humidity + " %";
 
         // Append elements in the correct order
         divRow.appendChild(div2);
