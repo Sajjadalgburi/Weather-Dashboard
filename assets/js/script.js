@@ -63,8 +63,12 @@ document.addEventListener("DOMContentLoaded", () => {
         div3.setAttribute("class", "card mb-3");
 
         const titleEl = document.createElement("h3");
-        titleEl.setAttribute("class", "card-header");
-        titleEl.textContent = "LOL"; // Set the title text content
+        titleEl.setAttribute("class", "card-header text-center fs-");
+
+        var unixTimeStamp = data.list[i].dt;
+        var convertedTime = dayjs.unix(unixTimeStamp).format("MM/DD/YYYY");
+
+        titleEl.innerHTML = convertedTime;
 
         const imgEl = document.createElement("img");
         imgEl.setAttribute("class", "weather-icon");
