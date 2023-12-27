@@ -146,6 +146,12 @@ document.addEventListener("DOMContentLoaded", () => {
       weatherImg.src = "assets/Weather-Imgs/drizzle.png";
     } else if (data.weather[0].main == "Mist") {
       weatherImg.src = "assets/Weather-Imgs/mist.png";
+    } else if (data.weather[0].main == "Humidity") {
+      weatherImg.src = "assets/Weather-Imgs/humidity.png";
+    } else if (data.weather[0].main == "Snow") {
+      weatherImg.src = "assets/Weather-Imgs/snow.png";
+    } else if (data.weather[0].main == "Wind") {
+      weatherImg.src = "assets/Weather-Imgs/wind.png";
     }
 
     var tempEl = document.createElement("p");
