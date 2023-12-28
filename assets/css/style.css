@@ -127,3 +127,19 @@ h3 {
   border-radius: 0.3rem;
   transform: translate(-1px, -1px);
 } */
+
+.past-searchBtn {
+  padding: 0.5rem;
+  margin-bottom: 10px;
+  border: none;
+  color: #fff;
+  transform: translate(-1px, -1px);
+  border-radius: 0.3rem;
+  background-color: #465058;
+}
+
+.past-searchBtn:hover {
+  transition: 0.2s;
+  transform: translate(0, 0);
+  box-shadow: 6px 5px #ccdad1;
+}
