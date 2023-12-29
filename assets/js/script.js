@@ -8,7 +8,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const apiKey = "7d625d8ae80758ec40d01750c5681218"; // Api Key
 
-  const currentWeather = function (cityNameValue) {
+  const currentWeather = function () {
+    var cityNameValue = cityName.value.trim();
+
     const currentWeatherApi =
       "https://api.openweathermap.org/data/2.5/weather?q=" +
       cityNameValue +
@@ -22,11 +24,22 @@ document.addEventListener("DOMContentLoaded", () => {
       })
       .then(function (data) {
         console.log(data);
-        displayCurrentWeather(data);
+        if (data.cod && data.cod !== 200) {
+          // Check if the 'cod' property indicates an error
+          alert("Error: " + data.message);
+        } else {
+          displayCurrentWeather(data);
+        }
+      })
+      .catch(function (error) {
+        console.error(error);
+        alert("City not found or there was an issue with the request.");
       });
   };
 
-  const futureWeather = function (cityNameValue) {
+  const futureWeather = function () {
+    var cityNameValue = cityName.value.trim();
+
     const futureWeatherApi =
       "https://api.openweathermap.org/data/2.5/forecast?q=" +
       cityNameValue +
@@ -38,16 +51,17 @@ document.addEventListener("DOMContentLoaded", () => {
       .then(function (response) {
         if (response.status === 404) {
           alert("Weather fetch error: " + response.status);
+          return null; // Return null to indicate an error
         }
         return response.json();
       })
       .then(function (data) {
-        // Check if the 'list' property exists in the data
         divRow.innerHTML = " ";
         displayFutureWeather(data);
       })
       .catch(function (error) {
         console.error(error);
+        alert("City not found or there was an issue with the request.");
       });
   };
 
@@ -203,6 +217,7 @@ document.addEventListener("DOMContentLoaded", () => {
       // check if there is a number, else return
       return;
     }
+    console.log(cityNameValue);
     currentWeather(cityNameValue);
     futureWeather(cityNameValue);
   };
