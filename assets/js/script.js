@@ -5,12 +5,23 @@ document.addEventListener("DOMContentLoaded", () => {
   const cityName = document.querySelector(".search-input");
   const currentForecast = document.querySelector(".current-forecast");
   const divRow = document.getElementById("row");
+  const pastSearchBtn = document.getElementById("pastSearchBtn");
 
   const apiKey = "7d625d8ae80758ec40d01750c5681218"; // Api Key
 
-  const currentWeather = function () {
-    var cityNameValue = cityName.value.trim();
+  const retreiveItems = function () {
+    return JSON.parse(localStorage.getItem("CityName"));
+  };
 
+  var items = retreiveItems();
+
+  if (items == null) {
+    items = [];
+  }
+
+  console.log(items);
+
+  const currentWeather = function (cityNameValue) {
     const currentWeatherApi =
       "https://api.openweathermap.org/data/2.5/weather?q=" +
       cityNameValue +
@@ -28,6 +39,8 @@ document.addEventListener("DOMContentLoaded", () => {
           // Check if the 'cod' property indicates an error
           alert("Error: " + data.message);
         } else {
+          items.push(cityNameValue);
+          localStorage.setItem("CityName", JSON.stringify(items));
           displayCurrentWeather(data);
         }
       })
@@ -37,9 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
       });
   };
 
-  const futureWeather = function () {
-    var cityNameValue = cityName.value.trim();
-
+  const futureWeather = function (cityNameValue) {
     const futureWeatherApi =
       "https://api.openweathermap.org/data/2.5/forecast?q=" +
       cityNameValue +
@@ -206,6 +217,18 @@ document.addEventListener("DOMContentLoaded", () => {
     currentForecast.appendChild(windEl);
     currentForecast.appendChild(humidityEl);
   };
+
+  const CreateBtns = function () {
+    for (let i = 0; i < items.length; i++) {
+      const btn = document.createElement("button");
+      btn.setAttribute("class", "past-searchBtn");
+      btn.innerHTML = items[i];
+
+      pastSearchBtn.appendChild(btn);
+    }
+  };
+
+  CreateBtns();
 
   const getCityName = () => {
     const cityNameValue = cityName.value.trim(); // grab and trim the vlaue of the input
