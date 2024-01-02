@@ -138,6 +138,11 @@ h3 {
   background-color: #465058;
 }
 
+#pastSearchBtn {
+  display: flex;
+  flex-direction: column;
+}
+
 .past-searchBtn:hover {
   transition: 0.2s;
   transform: translate(0, 0);
