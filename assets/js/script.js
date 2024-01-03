@@ -79,7 +79,10 @@ document.addEventListener("DOMContentLoaded", () => {
     if (data.list) {
       for (let i = 1; i < data.list.length; i += 8) {
         const div2 = document.createElement("div");
-        div2.setAttribute("class", "col-12 col-sm-6 col-md-2");
+        div2.setAttribute(
+          "class",
+          "col-12 col-sm-6 col-md-4 col-lg-3 col-xl-4"
+        );
 
         const div3 = document.createElement("div");
         div3.setAttribute("class", "card mb-3");
