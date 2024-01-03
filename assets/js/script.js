@@ -219,12 +219,22 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   const CreateBtns = function () {
-    for (let i = 0; i < items.length; i++) {
-      const btn = document.createElement("button");
-      btn.setAttribute("class", "past-searchBtn");
-      btn.innerHTML = items[i];
+    const addedItems = new Set();
 
-      pastSearchBtn.appendChild(btn);
+    for (let i = 0; i < items.length; i++) {
+      const currentItem = items[i];
+
+      // Check if the item is not already added
+      if (!addedItems.has(currentItem)) {
+        const btn = document.createElement("button");
+        btn.setAttribute("class", "past-searchBtn");
+        btn.innerHTML = currentItem;
+
+        pastSearchBtn.appendChild(btn);
+
+        // Add the item to the set to mark it as added
+        addedItems.add(currentItem);
+      }
     }
   };
 
