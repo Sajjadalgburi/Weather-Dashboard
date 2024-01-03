@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const searchBtn = document.querySelector(".searchBtn");
   const cityName = document.querySelector(".search-input");
   const currentForecast = document.querySelector(".current-forecast");
+  const forecast = document.querySelector(".forecast");
   const divRow = document.getElementById("row");
   const pastSearchBtn = document.getElementById("pastSearchBtn");
 
@@ -19,8 +20,6 @@ document.addEventListener("DOMContentLoaded", () => {
     items = [];
   }
 
-  console.log(items);
-
   const currentWeather = function (cityNameValue) {
     const currentWeatherApi =
       "https://api.openweathermap.org/data/2.5/weather?q=" +
@@ -34,7 +33,6 @@ document.addEventListener("DOMContentLoaded", () => {
         return response.json();
       })
       .then(function (data) {
-        console.log(data);
         if (data.cod && data.cod !== 200) {
           // Check if the 'cod' property indicates an error
           alert("Error: " + data.message);
@@ -42,6 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
           items.push(cityNameValue);
           localStorage.setItem("CityName", JSON.stringify(items));
           displayCurrentWeather(data);
+          updatePastSearchBtns();
         }
       })
       .catch(function (error) {
@@ -79,8 +78,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const displayFutureWeather = (data) => {
     if (data.list) {
       for (let i = 1; i < data.list.length; i += 8) {
-        console.log(data.list[i]);
-
         const div2 = document.createElement("div");
         div2.setAttribute("class", "col-12 col-sm-6 col-md-2");
 
@@ -170,9 +167,6 @@ document.addEventListener("DOMContentLoaded", () => {
     var unixTimeStamp = data.dt;
     var convertedTime = dayjs.unix(unixTimeStamp).format("MM/DD/YYYY");
 
-    // console.log(convertedTime);
-    // console.log(unixTimeStamp);
-
     h3El.innerHTML = cityName + " " + "(" + convertedTime + ")";
 
     var weatherImg = document.createElement("img");
@@ -218,7 +212,32 @@ document.addEventListener("DOMContentLoaded", () => {
     currentForecast.appendChild(humidityEl);
   };
 
-  const CreateBtns = function () {
+  const getCityName = () => {
+    const cityNameValue = cityName.value.trim(); // grab and trim the vlaue of the input
+
+    if (!cityNameValue) {
+      return; // check if there is nothing, else return
+    } else if (!isNaN(cityNameValue)) {
+      alert("Please enter a city name");
+      // check if there is a number, else return
+      return;
+    }
+    currentWeather(cityNameValue);
+    futureWeather(cityNameValue);
+  };
+
+  // Function to handle click on past search button
+  const handlePastSearchClick = (event) => {
+    const cityNameValue = event.target.innerHTML;
+    currentWeather(cityNameValue);
+    futureWeather(cityNameValue);
+  };
+
+  // Function to create or update past search buttons
+  const updatePastSearchBtns = function () {
+    // Clear pastSearchBtn before adding buttons
+    pastSearchBtn.innerHTML = "";
+
     const addedItems = new Set();
 
     for (let i = 0; i < items.length; i++) {
@@ -230,30 +249,15 @@ document.addEventListener("DOMContentLoaded", () => {
         btn.setAttribute("class", "past-searchBtn");
         btn.innerHTML = currentItem;
 
-        pastSearchBtn.appendChild(btn);
+        // Add click event listener to each past search button
+        btn.addEventListener("click", handlePastSearchClick);
 
-        // Add the item to the set to mark it as added
+        pastSearchBtn.appendChild(btn);
         addedItems.add(currentItem);
       }
     }
   };
 
-  CreateBtns();
-
-  const getCityName = () => {
-    const cityNameValue = cityName.value.trim(); // grab and trim the vlaue of the input
-
-    if (!cityNameValue) {
-      return; // check if there is nothing, else return
-    } else if (!isNaN(cityNameValue)) {
-      alert("Please enter a city name");
-      // check if there is a number, else return
-      return;
-    }
-    console.log(cityNameValue);
-    currentWeather(cityNameValue);
-    futureWeather(cityNameValue);
-  };
-
-  searchBtn.addEventListener("click", getCityName); // on click display the getCityName function
+  // Event listener for the search button
+  searchBtn.addEventListener("click", getCityName);
 });
